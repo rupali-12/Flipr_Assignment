@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
 module.exports.Signup = async (req, res) => {
   const { username, password, accessRole, restrictedDatabases } = req.body;
@@ -21,6 +22,8 @@ module.exports.Signup = async (req, res) => {
 };
 
 // login
+const JWT_SECRET = process.env.JWT_SECRET;
+console.log("kfdvf-->   ", JWT_SECRET);
 module.exports.Login = async (req, res) => {
   const { username, password, accessRole, restrictedDatabases } = req.body;
   try {
@@ -37,7 +40,7 @@ module.exports.Login = async (req, res) => {
         id: user.id,
       },
     };
-    jwt.sign(payload, "secret", { expiresIn: "1h" }, (err, token) => {
+    jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" }, (err, token) => {
       if (err) throw err;
       res.json({ token });
     });
