@@ -1,0 +1,53 @@
+start:
+nodemon server
+
+********************************************************************************************************************
+info:
+  description: API endpoints for managing MongoDB instances, databases, users, and authentication
+paths:  Auth
+  /api/auth/signup:
+    post:
+      summary: Signup for a new account
+
+  /api/auth/login:
+    post:
+      summary: Login to an existing account
+
+***************************************************************************************
+paths:  users
+  /api/users/:userId:
+    put:
+      summary: Change current user's password
+
+  /api/users.create:
+    post:
+      summary: Create a new user
+
+  /api/users/:userId:
+    delete:
+      summary: Delete a user by ID
+
+*********************************************************************************************
+path: instance
+  /api/instance:
+    get:
+      summary: Get list of instances
+    /api/instance/add:
+    post:
+      summary: Create a new instance
+
+  /api/instance/:id:
+    get:
+      summary: Get instance details by ID
+    
+*********************************************************************************************
+path: database
+  /api/database/create:
+    post:
+      summary: create database
+   /api/database/remove/:instanceId
+    post:
+      summary: remove database from instance
+
+  
+    
